@@ -14,7 +14,7 @@ describe('telnet', function () {
 
   describe('create server', function () {
     before(function (done) {
-      server = telnet.createServer(function (c) {
+      server = telnet.createServer(null, function (c) {
         c.on('data', function (b) {
           c.write(b);
         });

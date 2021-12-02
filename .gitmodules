@@ -1,0 +1,3 @@
+[submodule "neo-blessed"]
+	path = .submodules/neo-blessed
+	url = git@github.com.itozyun:itozyun/neo-blessed

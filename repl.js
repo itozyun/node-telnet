@@ -8,7 +8,7 @@ var telnet = require('./')
   , repl = require('repl')
   , port = Number(process.argv[2]) || 1337
 
-var server = telnet.createServer(function (client) {
+var server = telnet.createServer(null, function (client) {
 
   client.on('window size', function (e) {
     if (e.command === 'sb') {
@@ -34,10 +34,10 @@ var server = telnet.createServer(function (client) {
   client.setRawMode = setRawMode
 
   // make unicode characters work properly
-  client.do.transmit_binary()
+  client.do( telnet.OPTIONS.TRANSMIT_BINARY );
 
   // emit 'window size' events
-  client.do.window_size()
+  client.do( telnet.OPTIONS.NAWS );
 
   // create the REPL
   var r = repl.start({
@@ -75,15 +75,14 @@ server.listen(port)
  * The equivalent of "raw mode" via telnet option commands.
  * Set this function on a telnet `client` instance.
  */
-
-function setRawMode (mode) {
-  if (mode) {
-    this.do.suppress_go_ahead()
-    this.will.suppress_go_ahead()
-    this.will.echo()
-  } else {
-    this.dont.suppress_go_ahead()
-    this.wont.suppress_go_ahead()
-    this.wont.echo()
-  }
-}
+function setRawMode( mode ){
+    if( mode ){
+        this.do( telnet.OPTIONS.SUPPRESS_GO_AHEAD );
+        this.will( telnet.OPTIONS.SUPPRESS_GO_AHEAD );
+        this.will( telnet.OPTIONS.ECHO );
+    } else {
+        this.dont( telnet.OPTIONS.SUPPRESS_GO_AHEAD );
+        this.wont( telnet.OPTIONS.SUPPRESS_GO_AHEAD );
+        this.wont( telnet.OPTIONS.ECHO );
+    }
+};

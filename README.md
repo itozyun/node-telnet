@@ -1,7 +1,6 @@
 node-telnet
 ===========
 ### Telnet implementation for Node.js
-[![Build Status](https://secure.travis-ci.org/TooTallNate/node-telnet.png)](http://travis-ci.org/TooTallNate/node-telnet)
 
 
 This module offers an implementation of the [Telnet Protocol (RFC854)][rfc],
@@ -34,7 +33,7 @@ Examples
 ``` js
 var telnet = require('telnet')
 
-telnet.createServer(function (client) {
+telnet.createServer(null, function (client) {
 
   // make unicode characters work properly
   client.do.transmit_binary()
