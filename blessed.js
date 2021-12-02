@@ -20,7 +20,7 @@ function setRawMode( mode ){
         this.dont( telnet.OPTIONS.SUPPRESS_GO_AHEAD );
         this.wont( telnet.OPTIONS.SUPPRESS_GO_AHEAD );
         this.wont( telnet.OPTIONS.ECHO );
-    }
+    };
 };
 
 telnet({ tty: true, convertLF : false, debug : true }, function(client) {

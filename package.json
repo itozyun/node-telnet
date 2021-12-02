@@ -5,12 +5,12 @@
     "telnet"
   ],
   "version": "0.0.1",
-  "author": "Nathan Rajlich <nathan@tootallnate.net> (http://tootallnate.net)",
+  "author": "itozyun",
   "repository": {
     "type": "git",
-    "url": "git://github.com/TooTallNate/node-telnet.git"
+    "url": "git://github.com/itozyun/node-telnet.git"
   },
-  "main": "lib/telnet.js",
+  "main": "lib/export.js",
   "scripts": {
     "test": "mocha --reporter spec"
   },
