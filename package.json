@@ -12,7 +12,8 @@
   },
   "main": "lib/export.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "start": "node blessed.js"
   },
   "devDependencies": {
     "mocha": "^9.1.3"

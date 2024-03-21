@@ -41,6 +41,9 @@ telnet({ tty: true, convertLF : false, debug : true }, function(client) {
     client.on('authentication', console.log)
 
     client.on('term', function(terminal) {
+        if( terminal === 'ansi' || terminal === 'vtnt' || terminal === 'vt100' || terminal === 'vt52' ){
+            terminal = 'windows-ansi';
+        };
         screen.terminal = terminal;
         screen.render();
     });
@@ -76,8 +79,9 @@ telnet({ tty: true, convertLF : false, debug : true }, function(client) {
         smartCSR: true,
         input: client,
         output: client,
-        terminal: 'windows-ansi',
-        fullUnicode: true
+        // terminal: 'windows-ansi',
+        fullUnicode: true,
+        forceUnicode: true
     });
 
     client.on('close', function() {
@@ -107,4 +111,7 @@ telnet({ tty: true, convertLF : false, debug : true }, function(client) {
     });
 
     screen.render();
+
+    client.do( telnet.OPTIONS.X_DISPLAY_LOCATION );
+    client.do( telnet.OPTIONS.ECHO );
 }).listen(2300);
